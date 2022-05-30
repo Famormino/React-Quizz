@@ -1,0 +1,15 @@
+* {
+    font-family: 'Roboto Mono';
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.start__container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #000000;
+    padding: 10px;
+}
