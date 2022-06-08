@@ -18,31 +18,33 @@ export default function App() {
           return {
             ...question,
             id: nanoid(),
+            selectedAnswer: "",
+            showAnswer: false,
           };
         }),
       ),
     );
-  }, [start]);
+  }, []);
 
-  function startQuizz() {
-    setStart(!start);
-  }
+  const handleSelectAnswer = (questionId, answer) => {
+    setQuestions((prevQuestionsArray) =>
+      prevQuestionsArray.map((question) =>
+        question.id === questionId ? {...question, selectedAnswer: answer} : question,
+      ),
+    );
+  };
 
-  return (
-    <div className="container">
-      {start
-        ? questions.map((question) => {
-            return (
-              <Quizz
-                key={question.id}
-                category={question.category}
-                correctAnswer={question.correctAnswer}
-                incorrectAnswer={question.incorrectAnswer}
-                question={question.question}
-              />
-            );
-          })
-        : !start && <Start startQuizz={startQuizz} />}
-    </div>
-  );
+  const questionElements = questions.map((question) => (
+    <Quizz
+      key={question.id}
+      correctAnswer={question.correct_answer}
+      handleSelectAnswer={handleSelectAnswer}
+      id={question.id}
+      incorrectAnswers={question.incorrect_answers}
+      question={question.question}
+      selectedAnswer={question.selectedAnswer}
+    />
+  ));
+
+  return <section className="app__container">{questionElements}</section>;
 }

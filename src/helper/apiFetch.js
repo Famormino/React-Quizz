@@ -1,5 +1,5 @@
 function apiFetch() {
-  const API_URL = "https://opentdb.com/api.php?amount=2&type=multiple";
+  const API_URL = "https://opentdb.com/api.php?amount=3&type=multiple";
 
   return fetch(API_URL)
     .then((res) => res.json())
